@@ -12,11 +12,18 @@ import org.apache.log4j.Logger;
 
 import com.qa.controller.Action;
 import com.qa.controller.CrudController;
-import com.qa.controller.CustomerController;
+
+import com.qa.controller.ItemController;
+import com.qa.persistence.dao.ItemsDaoMysql;
+import com.qa.services.ItemServices;
+
 import com.qa.persistence.dao.CustomerDaoMysql;
-import com.qa.persistence.domain.Domain;
 import com.qa.services.CustomerServices;
+import com.qa.controller.CustomerController;
+
 import com.qa.utils.Utils;
+
+import com.qa.persistence.domain.Domain;
 
 public class Ims {
 	
@@ -32,12 +39,12 @@ public class Ims {
 		boolean stop = false;
 		do {
 
-			LOGGER.info("Which entity would you like to use?");
+			LOGGER.info("Welcome to IMS. Please type an option?");
 			Domain.printDomains();
 			
 			Domain domain = Domain.getDomain();
 			if(domain.name() == "STOP") {
-				LOGGER.info("Goodbye");
+				LOGGER.info("Exiting Application");
 				System.exit(0);
 			}
 
@@ -52,6 +59,10 @@ public class Ims {
 						new CustomerServices(new CustomerDaoMysql(username, password)));
 				doAction(customerController, action);
 				break;
+			case ITEM:
+				ItemController itemController = new ItemController(new ItemServices(new ItemsDaoMysql(username, password)));
+				doAction(itemController, action);
+				break;
 			case STOP:
 				stop = true;
 				break;
@@ -59,7 +70,7 @@ public class Ims {
 				break;
 			}
 		} while (!stop);
-		LOGGER.info("GOODBYE");
+		LOGGER.info("Exiting Application");
 
 	}
 

@@ -2,6 +2,7 @@ package com.qa.persistence.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,49 +10,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import com.qa.persistence.domain.Items;
 
-
-
-import com.qa.persistence.domain.Customer;
-
-
-public class CustomerDaoMysql implements Dao<Customer> {
-
-	public static final Logger LOGGER = Logger.getLogger(CustomerDaoMysql.class);
+public class ItemsDaoMysql implements Dao<Items> {
+	public static final Logger LOGGER = Logger.getLogger(ItemsDaoMysql.class);
 
 	private String jdbcConnectionUrl;
 	private String username;
 	private String password;
 
-	public CustomerDaoMysql(String username, String password) {
+	public ItemsDaoMysql(String username, String password) {
 		this.jdbcConnectionUrl = "jdbc:mysql://localhost:3306/ims";
 		this.username = username;
 		this.password = password;
 	}
 
-	public CustomerDaoMysql(String jdbcConnectionUrl, String username, String password) {
+	public ItemsDaoMysql(String jdbcConnectionUrl, String username, String password) {
 		this.jdbcConnectionUrl = jdbcConnectionUrl;
 		this.username = username;
 		this.password = password;
 	}
 
-	Customer customerFromResultSet(ResultSet resultSet) throws SQLException {
-		Long id = resultSet.getLong("customer_id");
-		String firstName = resultSet.getString("first_name");
-		String surname = resultSet.getString("surname");
-		return new Customer(id, firstName, surname);
+	Items itemsFromResultSet(ResultSet resultSet) throws SQLException {
+		Long itemId = resultSet.getLong("item_id");
+		String itemName = resultSet.getString("item_name");
+		double price = resultSet.getDouble("price");
+		int stock = resultSet.getInt("stock");
+		return new Items(itemId, itemName, price, stock);
+
 	}
 
 	@Override
-	public List<Customer> readAll() {
+	public List<Items> readAll() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from customers");) {
-			ArrayList<Customer> customers = new ArrayList<>();
+				Statement stmt = connection.createStatement();
+				ResultSet resultSet = stmt.executeQuery("select * from items");) {
+			ArrayList<Items> items = new ArrayList<>();
 			while (resultSet.next()) {
-				customers.add(customerFromResultSet(resultSet));
+				items.add(itemsFromResultSet(resultSet));
+
 			}
-			return customers;
+			return items;
 		} catch (SQLException e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -59,12 +58,12 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return new ArrayList<>();
 	}
 
-	public Customer readLatest() {
+	public Items readLatest() {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM customers ORDER BY customer_id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * FROM items ORDER BY item_id DESC LIMIT 1");) {
 			resultSet.next();
-			return customerFromResultSet(resultSet);
+			return itemsFromResultSet(resultSet);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -73,11 +72,11 @@ public class CustomerDaoMysql implements Dao<Customer> {
 	}
 
 	@Override
-	public Customer create(Customer customer) {
+	public Items create(Items t) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("insert into customers(first_name, surname) values('" + customer.getFirstName()
-					+ "','" + customer.getSurname() + "')");
+				Statement stmt = connection.createStatement();) {
+			stmt.executeUpdate("insert into items(item_name, price, stock) values('" + t.getItemName() + "','"
+					+ t.getPrice() + "','" + t.getStock() + "')");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
@@ -86,12 +85,17 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return null;
 	}
 
-	public Customer readCustomer(Long id) {
+	public Items readItem(Long item_id) {
+		String query = "SELECT * FROM items WHERE item_id = ?";
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM customers where customer_id = " + id);) {
-			resultSet.next();
-			return customerFromResultSet(resultSet);
+				PreparedStatement stmt = connection.prepareStatement(query);){
+			stmt.setLong(1, item_id);
+			try(ResultSet rs = stmt.executeQuery();){
+				rs.next();
+				return itemsFromResultSet(rs);
+				
+			}
+				
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
@@ -100,29 +104,32 @@ public class CustomerDaoMysql implements Dao<Customer> {
 	}
 
 	@Override
-	public Customer update(Customer customer) {
+	public Items update(Items t) {
+		String query = "UPDATE items SET item_name = ?, price = ?, stock = ? WHERE item_id = ?";
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update customers set first_name ='" + customer.getFirstName() + "', surname ='"
-					+ customer.getSurname() + "' WHERE customer_id =" + customer.getId());
-			return readCustomer(customer.getId());
+				PreparedStatement stmt = connection.prepareStatement(query);){
+			stmt.setString(1, t.getItemName());
+			stmt.setDouble(2, t.getPrice());
+			stmt.setInt(3, t.getStock());
+			stmt.setLong(4, t.getItem_id());
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
 		}
 		return null;
 	}
-
 
 	@Override
 	public void delete(long id) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
-				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("delete from customers where customer_id = " + id);
+				Statement stmt = connection.createStatement();) {
+			stmt.executeUpdate("delete from items where item_id = " + id);
 		} catch (Exception e) {
 			LOGGER.debug(e.getStackTrace());
 			LOGGER.error(e.getMessage());
+
 		}
+
 	}
 
 }
