@@ -1,7 +1,8 @@
 Coverage: 34%
-# Project Title
+# IMS - Inventory Management System
 
-One Paragraph of project description goes here please
+IMS is an application developed in Java/MySQL which provides CRUD (Create/Read/Update/Delete) functionalities relating to an ordering system.
+This application allows the user to perform a variety of tasks with Customers, Products and Orders.
 
 ## Getting Started
 
@@ -9,10 +10,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+In order to succesfully execute this program, there are a number of dependencies which will need to be installed. These are:
 
 ```
-Give examples
+1. Programming IDE (this is developed in Eclipse)
+2. JDK version 14
+3. MySQL database running on localhost
+4. Maven Dependency (if not using Eclipse as IDE)
 ```
 
 ### Installing
