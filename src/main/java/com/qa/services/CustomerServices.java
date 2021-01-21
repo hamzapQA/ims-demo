@@ -2,12 +2,13 @@ package com.qa.services;
 
 import java.util.List;
 
+import com.qa.services.CrudServices;
 import com.qa.persistence.dao.Dao;
 import com.qa.persistence.domain.Customer;
 
 public class CustomerServices implements CrudServices<Customer> {
 
-	Dao<Customer> customerDao;
+	private Dao<Customer> customerDao;
 	
 	public CustomerServices(Dao<Customer> customerDao) {
 		this.customerDao = customerDao;
@@ -17,16 +18,16 @@ public class CustomerServices implements CrudServices<Customer> {
 		return customerDao.readAll();
 	}
 
-	public void create(Customer customer) {
-		customerDao.create(customer);
+	public Customer create(Customer customer) {
+		return customerDao.create(customer);
 	}
 
-	public void update(long id, Customer t) {
-		
+	public Customer update(Customer customer) {
+		return customerDao.update(customer);
 	}
 
-	public void delete(Customer t) {
-		
+	public void delete(Long id) {
+		customerDao.delete(id);
 	}
 
 }
