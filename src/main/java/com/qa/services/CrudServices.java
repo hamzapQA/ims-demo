@@ -6,9 +6,9 @@ public interface CrudServices<T> {
 
     public List<T> readAll();
      
-    void create(T t);
+    T create(T t);
      
-    void update(long id, T t);
+    T update(T t);
  
     void delete(Long id);
 
