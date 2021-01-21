@@ -80,7 +80,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Hamza Pervez** - *Initial work* - [hamzapQA](https://github.com/hamzapQA)
+* **Hamza Pervez** - *Project Completion* - [hamzapQA](https://github.com/hamzapQA)
 
 * **RafSobolQAC** - *Initial work* - [RafSobolQAC](https://github.com/RafSobolQAC/ims-demo)
 
