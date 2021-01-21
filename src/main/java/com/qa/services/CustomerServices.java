@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qa.persistence.dao.Dao;
 import com.qa.persistence.domain.Customer;
+import com.qa.services.CustomerServices;
 
 public class CustomerServices implements CrudServices<Customer> {
 
@@ -25,8 +26,9 @@ public class CustomerServices implements CrudServices<Customer> {
 		
 	}
 
-	public void delete(Customer t) {
+	public void delete(Long id) {
 		
 	}
+
 
 }
