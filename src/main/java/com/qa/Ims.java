@@ -24,6 +24,7 @@ import com.qa.controller.CustomerController;
 import com.qa.persistence.dao.OrdersDaoMysql;
 import com.qa.services.OrderServices;
 import com.qa.controller.OrderController;
+
 import com.qa.utils.Utils;
 
 import com.qa.persistence.domain.Domain;
@@ -69,6 +70,10 @@ public class Ims {
 			case ORDER:
 				OrderController orderController = new OrderController(new OrderServices(new OrdersDaoMysql(username, password)));
 				doAction(orderController, action);
+				break;
+			case ORDERLINE:
+				OrderlineController orderlineController = new OrderlineController(new OrderlineServices(new OrderlineDaoMysql(username, password)));
+				doAction(orderlineController, action);
 				break;
 			case STOP:
 				stop = true;
