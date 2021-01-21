@@ -97,7 +97,6 @@ Give an example
 ## Deployment
 
 To deploy this project on a live system, you can use the included jar file "HamzaIMS-0.0.1-SNAPSHOT-jar-with-dependencies.jar".
-=======
 
 ### And coding style tests
 
