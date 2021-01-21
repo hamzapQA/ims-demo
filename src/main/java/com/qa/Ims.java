@@ -46,7 +46,7 @@ public class Ims {
 		boolean stop = false;
 		do {
 
-			LOGGER.info("Welcome to IMS. Please type an option?");
+			LOGGER.info("Welcome to IMS! Please type an option?");
 			Domain.printDomains();
 			
 			Domain domain = Domain.getDomain();

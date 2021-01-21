@@ -65,7 +65,8 @@ public static final Logger LOGGER = Logger.getLogger(Orderline.class);
 		LOGGER.info("Please enter the ID of the orderline you wish to delete: ");
 		Long orderlineId = Long.valueOf(getInput());
 		orderlineServices.delete(orderlineId);
-		
+		LOGGER.info("Orderline Deleted!");
+		return orderline;
 	}
 	
 	
