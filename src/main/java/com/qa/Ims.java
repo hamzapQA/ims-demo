@@ -21,6 +21,9 @@ import com.qa.persistence.dao.CustomerDaoMysql;
 import com.qa.services.CustomerServices;
 import com.qa.controller.CustomerController;
 
+import com.qa.persistence.dao.OrdersDaoMysql;
+import com.qa.services.OrderServices;
+import com.qa.controller.OrderController;
 import com.qa.utils.Utils;
 
 import com.qa.persistence.domain.Domain;
@@ -63,6 +66,10 @@ public class Ims {
 				ItemController itemController = new ItemController(new ItemServices(new ItemsDaoMysql(username, password)));
 				doAction(itemController, action);
 				break;
+			case ORDER:
+				OrderController orderController = new OrderController(new OrderServices(new OrdersDaoMysql(username, password)));
+				doAction(orderController, action);
+				break;
 			case STOP:
 				stop = true;
 				break;
@@ -97,7 +104,7 @@ public class Ims {
 
 
 	public void init(String username, String password) {
-		init("jdbc:mysql://localhost:3306/ims", username, password, "src/main/resources/sql-schema.sql");
+		init("jdbc:mysql://localhost:3306/", username, password, "src/main/resources/sql-schema.sql");
 	}
 
 	public String readFile(String fileLocation) {
