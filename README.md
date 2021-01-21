@@ -124,7 +124,7 @@ We use [SemVer](http://semver.org/) for versioning.
 * **Hamza Pervez** - *Project Completion* - [hamzapQA](https://github.com/hamzapQA)
 
 * **RafSobolQAC** - *Initial work* - [RafSobolQAC](https://github.com/RafSobolQAC/ims-demo)
-=======
+
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
 
 
