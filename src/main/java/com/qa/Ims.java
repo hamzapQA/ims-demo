@@ -12,14 +12,27 @@ import org.apache.log4j.Logger;
 
 import com.qa.controller.Action;
 import com.qa.controller.CrudController;
-import com.qa.controller.CustomerController;
-//import com.qa.controller.ItemController;
+
+import com.qa.controller.ItemController;
+import com.qa.persistence.dao.ItemsDaoMysql;
+import com.qa.services.ItemServices;
+
 import com.qa.persistence.dao.CustomerDaoMysql;
-//import com.qa.persistence.dao.ItemsDaoMysql;
-import com.qa.persistence.domain.Domain;
 import com.qa.services.CustomerServices;
-//import com.qa.services.ItemServices;
+import com.qa.controller.CustomerController;
+
+import com.qa.persistence.dao.OrdersDaoMysql;
+import com.qa.services.OrderServices;
+import com.qa.controller.OrderController;
+
+import com.qa.persistence.dao.OrderlineDaoMysql;
+import com.qa.services.OrderlineServices;
+import com.qa.controller.OrderlineController;
 import com.qa.utils.Utils;
+
+import com.qa.persistence.domain.Domain;
+
+
 
 public class Ims {
 
@@ -35,12 +48,20 @@ public class Ims {
 		boolean stop = false;
 		do {
 
+
+			LOGGER.info("Welcome to IMS! Please type an option?");
+
 			LOGGER.info("Which entity would you like to use?");
+
 			Domain.printDomains();
 			
 			Domain domain = Domain.getDomain();
 			if(domain.name() == "STOP") {
+
+				LOGGER.info("Exiting Application");
+
 				LOGGER.info("Goodbye");
+
 				System.exit(0);
 			}
 
@@ -56,16 +77,16 @@ public class Ims {
 				doAction(customerController, action);
 				break;
 			case ITEM:
-				//ItemController itemController = new ItemController(new ItemServices(new ItemsDaoMysql(username, password)));
-				//doAction(itemController, action);
-				//break;
+				ItemController itemController = new ItemController(new ItemServices(new ItemsDaoMysql(username, password)));
+				doAction(itemController, action);
+				break;
 			case ORDER:
-				//OrderController orderController = new OrderController(new OrderServices(new OrdersDaoMysql(username, password)));
-				//doAction(orderController, action);
-				//break;
-			//case ORDERLINE:
-				//OrderlineController orderlineController = new OrderlineController(new OrderlineServices(new OrderlineDaoMysql(username, password)));
-				//doAction(orderlineController, action);
+				OrderController orderController = new OrderController(new OrderServices(new OrdersDaoMysql(username, password)));
+				doAction(orderController, action);
+				break;
+			case ORDERLINE:
+				OrderlineController orderlineController = new OrderlineController(new OrderlineServices(new OrderlineDaoMysql(username, password)));
+				doAction(orderlineController, action);
 				break;
 			case STOP:
 				stop = true;
@@ -74,7 +95,10 @@ public class Ims {
 				break;
 			}
 		} while (!stop);
+
+		LOGGER.info("Exiting Application");
 		LOGGER.info("GOODBYE");
+
 
 	}
 
@@ -99,6 +123,9 @@ public class Ims {
 		}
 	}
 
+
+	public void init(String username, String password) {
+		init("jdbc:mysql://localhost:3306/", username, password, "src/main/resources/sql-schema.sql");
 	/**
 	 * To initialise the database schema. DatabaseConnectionUrl will default to
 	 * localhost.
@@ -108,6 +135,7 @@ public class Ims {
 	 */
 	public void init(String username, String password) {
 		init("jdbc:mysql://localhost:3306/ims", username, password, "src/main/resources/sql-schema.sql");
+
 	}
 
 	public String readFile(String fileLocation) {
@@ -130,6 +158,7 @@ public class Ims {
 	/**
 	 * To initialise the database with the schema needed to run the application
 	 */
+
 	public void init(String jdbcConnectionUrl, String username, String password, String fileLocation) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				BufferedReader br = new BufferedReader(new FileReader(fileLocation));) {
@@ -146,5 +175,7 @@ public class Ims {
 			LOGGER.error(e.getMessage());
 		}
 	}
+
+}
 
 }

@@ -8,8 +8,9 @@ public enum Domain {
 
 	CUSTOMER("Info about customers"),
 	ITEM("Individual Items"),
-	ORDER("Purchases of items"),
-	ORDERLINE("Pulls items and orders together"),
+	ORDER("Generate an Order"),
+	ORDERLINE("Add items and total order"),
+
 	STOP("To close the application");
 	
 	public static final Logger LOGGER = Logger.getLogger(Domain.class);
