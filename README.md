@@ -1,4 +1,3 @@
-
 Coverage: 61%
 
 # IMS - Inventory Management System
@@ -22,6 +21,7 @@ In order to succesfully execute this program, there are a number of dependencies
 ```
 
 ### Installing
+
 
 
 This is a step by step guide on how to get the project up and running on your local machine for development and testing. 
@@ -66,18 +66,17 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-
 ## Running the tests
 
 Explain how to run the automated tests for this system. Break down into which tests and what they do
 
 ### Unit Tests 
 
-
 Unit tests make use of JUnit and test the functionality of the  Customer, Item and Order classes as well as functionality of some of the DAO classes. 
 
 Explain what these tests test, why and how to run them
 
+Explain what these tests test, why and how to run them
 
 ```
 Give an example
@@ -86,31 +85,20 @@ Give an example
 ### Integration Tests 
 Explain what these tests test, why and how to run them
 
+
 mockito
 
-
-
-```
 Give an example
 ```
 
+
 ## Deployment
 
-To deploy this project on a live system, you can use the included jar file "HamzaIMS-0.0.1-SNAPSHOT-jar-with-dependencies.jar".
-=======
+To deploy this project on a live system, you can use the included jar file "HamzaIMS-0.0.1-SNAPSHOT-jar-with-dependencies.
 
 ### And coding style tests
 
 Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 
 ## Built With
 
@@ -125,9 +113,8 @@ We use [SemVer](http://semver.org/) for versioning.
 * **Hamza Pervez** - *Project Completion* - [hamzapQA](https://github.com/hamzapQA)
 
 * **RafSobolQAC** - *Initial work* - [RafSobolQAC](https://github.com/RafSobolQAC/ims-demo)
-=======
-* **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
 
+* **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
 
 ## License
 
@@ -142,8 +129,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 * QA-Community
 * Team Trap
 * GitHub
-
 * Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
