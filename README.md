@@ -1,5 +1,5 @@
 
-Coverage: 74%
+Coverage: 61%
 
 # IMS - Inventory Management System
 
