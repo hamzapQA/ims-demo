@@ -123,9 +123,6 @@ public class Ims {
 		}
 	}
 
-
-	public void init(String username, String password) {
-		init("jdbc:mysql://localhost:3306/", username, password, "src/main/resources/sql-schema.sql");
 	/**
 	 * To initialise the database schema. DatabaseConnectionUrl will default to
 	 * localhost.
@@ -175,7 +172,5 @@ public class Ims {
 			LOGGER.error(e.getMessage());
 		}
 	}
-
-}
 
 }
