@@ -1,6 +1,3 @@
-
-Coverage: 63%
-
 # IMS - Inventory Management System
 
 IMS is an application developed in Java/MySQL which provides CRUD (Create/Read/Update/Delete) functionalities relating to an ordering system.
@@ -145,4 +142,3 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 * QA-Community
 * Team Trap
 * GitHub
-
