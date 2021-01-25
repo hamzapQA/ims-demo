@@ -1,0 +1,14 @@
+com/qa/services/OrderServicesTest.class
+com/qa/persistance/dao/OrderDaoMysqlTest.class
+com/qa/persistence/domain/ItemsTest.class
+com/qa/persistance/dao/CustomerDoaMysqlTest.class
+com/qa/services/CustomerServicesTest.class
+com/qa/controller/OrderControllerTest.class
+com/qa/persistence/domain/CustomerTest.class
+com/qa/persistence/domain/OrdersTest.class
+com/qa/controller/ItemControllerTest.class
+com/qa/services/ItemServicesTest.class
+com/qa/controller/ActionTest.class
+com/qa/persistance/dao/ItemDaoMysqlTest.class
+com/qa/controller/CustomerControllerTest.class
+com/qa/persistence/domain/DomainTest.class
