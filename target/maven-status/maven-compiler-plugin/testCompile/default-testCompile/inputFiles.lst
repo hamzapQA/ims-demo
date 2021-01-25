@@ -1,0 +1,14 @@
+/home/student/git/ims-demo/src/test/java/com/qa/services/OrderServicesTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistance/dao/ItemDaoMysqlTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistance/dao/CustomerDoaMysqlTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistence/domain/ItemsTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/controller/ItemControllerTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/services/ItemServicesTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/services/CustomerServicesTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistence/domain/OrdersTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/controller/ActionTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/controller/CustomerControllerTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistence/domain/DomainTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/controller/OrderControllerTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistence/domain/CustomerTest.java
+/home/student/git/ims-demo/src/test/java/com/qa/persistance/dao/OrderDaoMysqlTest.java

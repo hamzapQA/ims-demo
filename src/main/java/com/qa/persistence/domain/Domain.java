@@ -6,10 +6,11 @@ import com.qa.utils.Utils;
 
 public enum Domain {
 
-	CUSTOMER("Information about customers"),
+	CUSTOMER("Info about customers"),
 	ITEM("Individual Items"),
 	ORDER("Generate an Order"),
 	ORDERLINE("Add items and total order"),
+
 	STOP("To close the application");
 	
 	public static final Logger LOGGER = Logger.getLogger(Domain.class);
@@ -20,13 +21,13 @@ public enum Domain {
 		this.description = description;
 	}
 	
-	public String description() {
+	public String getDescription() {
 		return this.name() + ": " +this.description;
 	}
-	
+
 	public static void printDomains() {
 		for (Domain domain : Domain.values()) {
-			LOGGER.info(domain.description());
+			LOGGER.info(domain.getDescription());
 		}
 	}
 	

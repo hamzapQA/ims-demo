@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-
-
+import com.qa.controller.CustomerController;
+import com.qa.persistence.dao.CustomerDaoMysql;
 import com.qa.persistence.domain.Customer;
 
 
@@ -24,7 +24,7 @@ public class CustomerDaoMysql implements Dao<Customer> {
 	private String password;
 
 	public CustomerDaoMysql(String username, String password) {
-		this.jdbcConnectionUrl = "jdbc:mysql://localhost:3306/ims";
+		this.jdbcConnectionUrl = "jdbc:mysql://localhost:3306/";
 		this.username = username;
 		this.password = password;
 	}
@@ -41,6 +41,13 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		String surname = resultSet.getString("surname");
 		return new Customer(id, firstName, surname);
 	}
+
+
+	/**
+	 * Reads all customers from the database
+	 * 
+	 * @return A list of customers
+	 */
 
 	@Override
 	public List<Customer> readAll() {
@@ -72,6 +79,14 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return null;
 	}
 
+
+
+	/**
+	 * Creates a customer in the database
+	 * 
+	 * @param customer - takes in a customer object. id will be ignored
+	 */
+
 	@Override
 	public Customer create(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
@@ -99,6 +114,15 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return null;
 	}
 
+
+	/**
+	 * Updates a customer in the database
+	 * 
+	 * @param customer - takes in a customer object, the id field will be used to
+	 *                 update that customer in the database
+	 * @return
+	 */
+
 	@Override
 	public Customer update(Customer customer) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
@@ -113,6 +137,12 @@ public class CustomerDaoMysql implements Dao<Customer> {
 		return null;
 	}
 
+
+	/**
+	 * Deletes a customer in the database
+	 * 
+	 * @param id - id of the customer
+	 */
 
 	@Override
 	public void delete(long id) {

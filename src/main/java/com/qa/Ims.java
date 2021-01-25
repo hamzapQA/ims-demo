@@ -32,8 +32,10 @@ import com.qa.utils.Utils;
 
 import com.qa.persistence.domain.Domain;
 
+
+
 public class Ims {
-	
+
 	public static final Logger LOGGER = Logger.getLogger(Ims.class);
 
 	public void imsSystem() {
@@ -46,12 +48,20 @@ public class Ims {
 		boolean stop = false;
 		do {
 
+
 			LOGGER.info("Welcome to IMS! Please type an option?");
+
+			LOGGER.info("Which entity would you like to use?");
+
 			Domain.printDomains();
 			
 			Domain domain = Domain.getDomain();
 			if(domain.name() == "STOP") {
+
 				LOGGER.info("Exiting Application");
+
+				LOGGER.info("Goodbye");
+
 				System.exit(0);
 			}
 
@@ -85,7 +95,10 @@ public class Ims {
 				break;
 			}
 		} while (!stop);
+
 		LOGGER.info("Exiting Application");
+		LOGGER.info("GOODBYE");
+
 
 	}
 
@@ -111,8 +124,15 @@ public class Ims {
 	}
 
 
+	/**
+	 * To initialise the database schema. DatabaseConnectionUrl will default to
+	 * localhost.
+	 * 
+	 * @param username
+	 * @param password
+	 */
 	public void init(String username, String password) {
-		init("jdbc:mysql://localhost:3306/", username, password, "src/main/resources/sql-schema.sql");
+		init("jdbc:mysql://localhost:3306/ims", username, password, "src/main/resources/sql-schema.sql");
 	}
 
 	public String readFile(String fileLocation) {
@@ -132,7 +152,9 @@ public class Ims {
 		return stringBuilder.toString();
 	}
 
-
+	/**
+	 * To initialise the database with the schema needed to run the application
+	 */
 	public void init(String jdbcConnectionUrl, String username, String password, String fileLocation) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				BufferedReader br = new BufferedReader(new FileReader(fileLocation));) {

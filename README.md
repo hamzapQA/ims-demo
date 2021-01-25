@@ -1,6 +1,3 @@
-
-Coverage: 74%
-
 # IMS - Inventory Management System
 
 IMS is an application developed in Java/MySQL which provides CRUD (Create/Read/Update/Delete) functionalities relating to an ordering system.
@@ -23,7 +20,6 @@ In order to succesfully execute this program, there are a number of dependencies
 
 ### Installing
 
-
 This is a step by step guide on how to get the project up and running on your local machine for development and testing. 
 
 1. Navigate to the folder in which you would like to set up the project.
@@ -44,72 +40,78 @@ git clone https://github.com/hamzapQA/ims-demo.git
  
  This section provides a brief description on the functionality of the application.
  
- When the program is started, it will ask for a username and password. These are the credentials for your localhost SQL database. 
+ When the program is started, it will ask for a username and password. These are the credentials for your SQL database. 
  
- Once logged in, you will be provided with options such as Customer, Order, Orderline and Stop.
+Once logged in, you will be provided with options such as Customer, Order, Orderline and Stop.
  
- When selecting any of the options, you will be provided with (Create/Read/Update/Delete) options. These can be selected by typing the corresponding command.
+When selecting any of the options, you will be provided with (Create/Read/Update/Delete) options. These can be selected by typing the corresponding command.
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Download the JAR, and change to the working directory and run the following command:
 
 ```
-Give the example
+java -jar HamzaIMS-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 ```
 
-And repeat
+Once the program loads it will ask for a username and password, these are your MySQL database credentials.
 
 ```
-until finished
+What is your username
+What is your username
+> root
+What is your password
+> root
 ```
+After the credentials have been entered, the menu will appear:
 
-End with an example of getting some data out of the system or using it for a little demo
-
-
+```
+Welcome to IMS! Please type an option?
+CUSTOMER: Information about customers
+ITEM: Individual Items
+ORDER: Generate an ORder
+ORDERLINE: ADD items and total order
+STOP: To close the application 
+```
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+The project comes with automated tests which make use of JUnit and Mockito. Tests are organised into classes to test functionality. Test files are stored in src/test/java instead of an individual test class.
 
 ### Unit Tests 
 
+Unit tests are used to ensure code works correctly and to protect against bugs. This makes use of JUnit and tests the functionality of the  Customer, Item and Order classes as well as functionality of some of the DAO classes. 
 
-Unit tests make use of JUnit and test the functionality of the  Customer, Item and Order classes as well as functionality of some of the DAO classes. 
+Here is an example of a Unit Test:
 
-Explain what these tests test, why and how to run them
+	@Test
+	public void setFirstNameTest() {
+		Customer customer = new Customer("John", "Jones");
+		customer.setFirstName("John");
+		assertTrue(customer.getFirstName().equals("John"));
+	}
 
+To run the tests, right click on the project folder - "Run As JUnit Test"
 
-```
-Give an example
-```
 
 ### Integration Tests 
-Explain what these tests test, why and how to run them
+Integration Tests make use of Mockito and aure used to test functionality of classes and controlelrs, domain and actions. Here is an example of a integration test to test the functionality of the create() method in CustomerController:
+```	
+	@Test
+	public void testCreate() {
+		final String F_NAME = "john", L_NAME = "jones";
+		final Customer created = new Customer(F_NAME, L_NAME);
 
-mockito
+		Mockito.when(utils.getString()).thenReturn(F_NAME, L_NAME);
+		Mockito.when(dao.create(created)).thenReturn(created);
 
+		assertEquals(created, controller.create());
 
-
-```
-Give an example
+		Mockito.verify(utils, Mockito.times(2)).getString();
+		Mockito.verify(dao, Mockito.times(1)).create(created);
+	}
 ```
 
 ## Deployment
 
 To deploy this project on a live system, you can use the included jar file "HamzaIMS-0.0.1-SNAPSHOT-jar-with-dependencies.jar".
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 
 ## Built With
 
@@ -136,13 +138,7 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-
 * Nick, Aswene and Vinesh for amazing Java concepts, help and support.
 * QA-Community
 * Team Trap
 * GitHub
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-

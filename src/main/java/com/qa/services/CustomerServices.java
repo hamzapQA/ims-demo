@@ -5,6 +5,7 @@ import java.util.List;
 import com.qa.services.CrudServices;
 import com.qa.persistence.dao.Dao;
 import com.qa.persistence.domain.Customer;
+import com.qa.services.CustomerServices;
 
 public class CustomerServices implements CrudServices<Customer> {
 
