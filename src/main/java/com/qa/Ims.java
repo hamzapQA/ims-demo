@@ -124,8 +124,6 @@ public class Ims {
 	}
 
 
-	public void init(String username, String password) {
-		init("jdbc:mysql://localhost:3306/", username, password, "src/main/resources/sql-schema.sql");
 	/**
 	 * To initialise the database schema. DatabaseConnectionUrl will default to
 	 * localhost.
@@ -135,7 +133,6 @@ public class Ims {
 	 */
 	public void init(String username, String password) {
 		init("jdbc:mysql://localhost:3306/ims", username, password, "src/main/resources/sql-schema.sql");
-
 	}
 
 	public String readFile(String fileLocation) {
@@ -158,7 +155,6 @@ public class Ims {
 	/**
 	 * To initialise the database with the schema needed to run the application
 	 */
-
 	public void init(String jdbcConnectionUrl, String username, String password, String fileLocation) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				BufferedReader br = new BufferedReader(new FileReader(fileLocation));) {
@@ -175,7 +171,5 @@ public class Ims {
 			LOGGER.error(e.getMessage());
 		}
 	}
-
-}
 
 }
