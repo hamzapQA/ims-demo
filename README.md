@@ -56,7 +56,6 @@ Once the program loads it will ask for a username and password, these are your M
 
 ```
 What is your username
-What is your username
 > root
 What is your password
 > root
@@ -67,8 +66,8 @@ After the credentials have been entered, the menu will appear:
 Welcome to IMS! Please type an option?
 CUSTOMER: Information about customers
 ITEM: Individual Items
-ORDER: Generate an ORder
-ORDERLINE: ADD items and total order
+ORDER: Generate an Order
+ORDERLINE: Add items and total order
 STOP: To close the application 
 ```
 ## Running the tests
