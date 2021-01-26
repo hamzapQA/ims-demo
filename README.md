@@ -91,7 +91,7 @@ To run the tests, right click on the project folder - "Run As JUnit Test"
 
 
 ### Integration Tests 
-Integration Tests make use of Mockito and aure used to test functionality of classes and controlelrs, domain and actions. Here is an example of a integration test to test the functionality of the create() method in CustomerController:
+Integration Tests make use of Mockito and aure used to test functionality of classes and controllers, domain and actions. Here is an example of a integration test to test the functionality of the create() method in CustomerController:
 ```	
 	@Test
 	public void testCreate() {
